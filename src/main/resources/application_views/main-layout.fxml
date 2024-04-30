@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            prefWidth="800" prefHeight="600"
+            fx:controller="MusicPlayer.Controller.LayoutController"
+            fx:id="rootPane"
+>
+
+    <!-- Barre latérale -->
+    <left>
+        <VBox id="sidebar" style="-fx-background-color: #333;" prefWidth="200">
+            <!-- Ajoutez vos éléments de la barre latérale ici -->
+            <fx:include source="SideBar.fxml" />
+
+        </VBox>
+    </left>
+
+
+    <!-- Zone principale de contenu -->
+    <center>
+        <VBox id="content" style="-fx-background-color: #fff;" prefWidth="200">
+            <Button onAction="#changeContent" text="Change Content" />
+
+            <!-- Ajoutez vos éléments de la barre latérale ici -->
+        </VBox>
+    </center>
+
+</BorderPane>

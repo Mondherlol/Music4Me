@@ -7,4 +7,6 @@ module org.example.javamusicplayer {
 
     opens MusicPlayer to javafx.fxml;
     exports MusicPlayer;
+    exports MusicPlayer.Controller;
+    opens MusicPlayer.Controller to javafx.fxml;
 }
