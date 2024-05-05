@@ -1,5 +1,7 @@
 package MusicPlayer.Model;
 
+import java.io.File;
+
 public class Song {
     private String title;
     private String artist;
@@ -8,14 +10,14 @@ public class Song {
     private int year;
     private int duration; // En secondes
 
-    private String mp3;
+    private File mp3;
 
     private String cover;
 
     private boolean isFavorite;
 
 
-    public Song(String title, String artist, String album, String genre, int year, int duration, String mp3, String cover) {
+    public Song(String title, String artist, String album, String genre, int year, int duration, File mp3, String cover) {
         this.title = title;
         this.artist = artist;
         this.album = album;
@@ -51,7 +53,7 @@ public class Song {
         return duration;
     }
 
-    public String getMp3() {
+    public File getMp3() {
         return mp3;
     }
 

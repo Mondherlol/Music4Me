@@ -36,7 +36,7 @@ public class Main extends Application {
         layoutController.loadView("Home-view.fxml");
 
         // Créer une scène
-        Scene scene = new Scene(root, 750, 510);
+        Scene scene = new Scene(root, 850, 650);
 
         // Définir le titre de la fenêtre
         primaryStage.setTitle("Music Player");

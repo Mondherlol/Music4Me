@@ -28,4 +28,11 @@
         </VBox>
     </center>
 
+    <bottom>
+        <VBox id="footer" style="-fx-background-color: #333;" prefWidth="663">
+            <fx:include source="player-view.fxml" />
+        </VBox>
+    </bottom>
+
+
 </BorderPane>
