@@ -1,11 +1,14 @@
 package MusicPlayer;
 
 import MusicPlayer.Controller.LayoutController;
+import MusicPlayer.Utils.DBConnexion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.sql.Connection;
 
 public class Main extends Application {
 
@@ -25,6 +28,8 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         instance = this;
         primaryStage = stage;
+
+        ConnectToDb(); // Connexion à la base de données
 
         // Charger le fichier FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application_views/main-layout.fxml"));
@@ -46,6 +51,15 @@ public class Main extends Application {
 
         // Afficher la fenêtre
         primaryStage.show();
+    }
+
+    public void ConnectToDb() {
+        Connection connection = DBConnexion.getConnection();
+        if (connection == null) {
+            System.out.println("La connexion à la base de données a échoué. L'application se ferme.");
+            return;
+        }
+        System.out.println("Connexion à la base de données établie avec succès.");
     }
 
     public void loadView(String fxmlFileName) {
