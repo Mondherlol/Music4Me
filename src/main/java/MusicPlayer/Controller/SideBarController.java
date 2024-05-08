@@ -16,12 +16,6 @@ public class SideBarController {
     @FXML
     private Button playlist1Button;
 
-    @FXML
-    private Button playlist2Button;
-
-    @FXML
-    private Button playlist3Button;
-
 
     @FXML
     private Button addSongButton;
@@ -42,14 +36,6 @@ public class SideBarController {
 
         playlist1Button.setOnAction(event -> {
             System.out.println("Bouton Playlist 1 cliqué !");
-        });
-
-        playlist2Button.setOnAction(event -> {
-            System.out.println("Bouton Playlist 2 cliqué !");
-        });
-
-        playlist3Button.setOnAction(event -> {
-            System.out.println("Bouton Playlist 3 cliqué !");
         });
 
         favoritesButton.setOnAction(event -> {

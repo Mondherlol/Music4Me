@@ -20,7 +20,7 @@
                <Font name="Open Sans Regular" size="16.0" />
             </font>
          </Label>
-         <ProgressBar fx:id="songProgressBar" layoutX="197.0" layoutY="95.0" pickOnBounds="false" prefHeight="14.0" prefWidth="431.0" progress="0.47" AnchorPane.bottomAnchor="18.60000000000001" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="198.20000000000005" AnchorPane.topAnchor="95.0" />
+         <ProgressBar fx:id="songProgressBar" layoutX="197.0" layoutY="95.0" pickOnBounds="false" prefHeight="14.0" prefWidth="431.0" progress="0.0" AnchorPane.bottomAnchor="18.60000000000001" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="198.20000000000005" AnchorPane.topAnchor="95.0" />
       <ImageView fx:id="coverSong" fitHeight="80.0" fitWidth="80.0" layoutX="42.0" layoutY="26.0">
          <image>
             <Image url="@../assets/images/album3.jpg" />

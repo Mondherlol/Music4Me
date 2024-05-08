@@ -1,42 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.AddSongFormController">
+<AnchorPane prefHeight="503.0" prefWidth="586.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.AddSongFormController">
 
-    <VBox alignment="CENTER" layoutX="110.0" prefHeight="624.0" prefWidth="364.0" spacing="10">
-        <Label style="-fx-font-size: 20px;" text="Ajouter une nouvelle musique" />
-        <GridPane hgap="10" vgap="5">
+    <VBox alignment="CENTER" layoutX="14.0" prefHeight="540.0" prefWidth="542.0" spacing="10" style="-fx-background-color: #111536;">
+        <Label style="-fx-background-color: #111536;" text="Submit a new song" textFill="WHITE">
+         <font>
+            <Font name="Open Sans Regular" size="27.0" />
+         </font></Label>
+        <GridPane hgap="10" style="-fx-background-color: #111536;" vgap="5">
         </GridPane>
-        <Label text="Titre:" />
-        <TextField fx:id="titleField" />
-        <Label text="Artiste:" />
-      <SplitPane dividerPositions="0.33217993079584773" prefHeight="60.0" prefWidth="204.0">
-         <items>
-            <ChoiceBox prefHeight="26.0" prefWidth="275.0" />
-            <Button fx:id="addArtistButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Add Artist" />
-         </items>
-      </SplitPane>
-        <Label text="Album:" />
-        <TextField fx:id="albumField" />
-        <Label text="Genre:" />
-        <TextField fx:id="genreField" />
-        <Label text="Année:" />
-        <TextField fx:id="yearField" />
-        <Label text="Durée (en secondes):" />
-        <TextField fx:id="durationField" />
-        <Label text="Fichier MP3:" />
-        <TextField fx:id="mp3Field" />
-        <Label text="Couverture:" />
-        <TextField fx:id="coverField" />
-        <Button text="Ajouter" />
+      <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+         <children>
+              <Label alignment="TOP_CENTER" style="-fx-background-color: #111536;" text="Title " textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </Label>
+              <TextField fx:id="titleField" prefHeight="21.0" prefWidth="438.0" style="-fx-background-color: white;">
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+         <children>
+            <Label alignment="TOP_CENTER" style="-fx-background-color: #111536;" text="Artist" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <ChoiceBox prefHeight="26.0" prefWidth="304.0" style="-fx-background-color: white;" />
+            <Button fx:id="addArtistButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="113.0" style="-fx-background-color: #1D1F3E;" text="New Artist" textFill="#ff7a8a">
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font></Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+         <children>
+            <Label alignment="TOP_CENTER" style="-fx-background-color: #111536;" text="Album" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="albumField" prefHeight="21.0" prefWidth="438.0" style="-fx-background-color: white;">
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+               <children>
+                  <Label alignment="TOP_CENTER" style="-fx-background-color: #111536;" text="Genre" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Open Sans Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="genreField" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: white;">
+                     <font>
+                        <Font name="Open Sans Regular" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+               <children>
+                  <Label alignment="TOP_CENTER" text="Release year" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Open Sans Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="yearField" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: white;" text="2024">
+                     <font>
+                        <Font name="Open Sans Regular" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="TOP_CENTER" text="Cover " textFill="WHITE">
+                           <font>
+                              <Font name="Open Sans Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView  fx:id="coverImage" fitHeight="111.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/album2.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnAddCover" onAction="#chooseImage" mnemonicParsing="false" style="-fx-background-color: #1D1F3E;" text="Add song cover" textFill="#ff7a8a">
+                           <font>
+                              <Font name="Open Sans Regular" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="156.0" prefWidth="155.0">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" text="MP3 File" textFill="WHITE">
+                                 <font>
+                                    <Font name="Open Sans Regular" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button fx:id="playSongBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="53.0" style="-fx-background-color: transparent;" textFill="#ff7a8a">
+                                 <font>
+                                    <Font name="Open Sans Regular" size="13.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="65.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/playSong.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button  fx:id="btnAddSong"  onAction="#chooseSong" mnemonicParsing="false" style="-fx-background-color: #1D1F3E;" text="Add song file" textFill="#ff7a8a">
+                                 <font>
+                                    <Font name="Open Sans Regular" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="21.0" prefWidth="542.0" style="-fx-background-color: #111536;">
+         <children>
+            <Label alignment="TOP_CENTER" text="Song Path : " textFill="#b9b9b9">
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="songPathLabel" alignment="TOP_CENTER" prefHeight="18.0" prefWidth="118.0" text="Dfdsfsdf" textFill="#22d749">
+               <font>
+                  <Font name="Open Sans Regular" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" style="-fx-background-color: #ff7a8a;" text="SAVE SONG" textFill="WHITE">
+         <font>
+            <Font name="Open Sans Regular" size="19.0" />
+         </font>
+      </Button>
+      <Label fx:id="errorLabel" text="ERROR : " textFill="#ff2d2d">
+         <font>
+            <Font name="Open Sans Regular" size="16.0" />
+         </font>
+      </Label>
     </VBox>
  <AnchorPane layoutX="299.0" layoutY="117.0" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="0.0" />
 

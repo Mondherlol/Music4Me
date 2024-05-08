@@ -29,6 +29,18 @@ public class Song {
         this.isFavorite = false;
     }
 
+    public Song(){
+        this.title = "";
+        this.artist = "";
+        this.album = "";
+        this.genre = "";
+        this.year = 0;
+        this.duration = 0;
+        this.mp3 = null;
+        this.cover = "";
+        this.isFavorite = false;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -59,6 +71,42 @@ public class Song {
 
     public String getCover() {
         return cover;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setMp3(File mp3) {
+        this.mp3 = mp3;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     @Override
