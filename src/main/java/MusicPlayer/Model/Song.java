@@ -8,16 +8,24 @@ public class Song {
     private String album;
     private String genre;
     private int year;
-    private int duration; // En secondes
-
+    private int duration;
     private File mp3;
-
     private String cover;
-
     private boolean isFavorite;
 
+    private int id;
+    // Autres propriétés existantes
 
-    public Song(String title, String artist, String album, String genre, int year, int duration, File mp3, String cover) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public Song(int id,String title, String artist, String album, String genre, int year, int duration, File mp3, String cover) {
+        System.out.println("Song path : "+ mp3.toString());
+        this.id = id;
         this.title = title;
         this.artist = artist;
         this.album = album;
@@ -30,6 +38,7 @@ public class Song {
     }
 
     public Song(){
+
         this.title = "";
         this.artist = "";
         this.album = "";
@@ -109,6 +118,10 @@ public class Song {
         isFavorite = favorite;
     }
 
+    public boolean getIsFavorite(){
+        return isFavorite;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -121,5 +134,5 @@ public class Song {
                 '}';
     }
 
-    }
+}
 

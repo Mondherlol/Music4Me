@@ -18,10 +18,7 @@ public class SideBarController {
 
 
     @FXML
-    private Button addSongButton;
-
-    @FXML
-    private Button settingsButton;
+    private Button addSongButton, createPlaylistBtn;
 
 
     @FXML
@@ -47,8 +44,10 @@ public class SideBarController {
             Main.getInstance().loadView("Add-Song-Form.fxml");
         });
 
-        settingsButton.setOnAction(event -> {
-            System.out.println("Bouton Paramètres cliqué !");
+        createPlaylistBtn.setOnAction(event -> {
+            System.out.println("Bouton Créer une playlist cliqué !");
+            Main.getInstance().loadView("Add-Playlist-Form.fxml");
         });
+
     }
 }

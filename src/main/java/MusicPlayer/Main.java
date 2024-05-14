@@ -1,6 +1,7 @@
 package MusicPlayer;
 
 import MusicPlayer.Controller.LayoutController;
+import MusicPlayer.Controller.MusicPlayerController;
 import MusicPlayer.Utils.DBConnexion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,8 @@ public class Main extends Application {
     public static Main getInstance() {
         return instance;
     }
-    private LayoutController layoutController;
+    public LayoutController layoutController;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -30,6 +32,7 @@ public class Main extends Application {
         primaryStage = stage;
 
         ConnectToDb(); // Connexion à la base de données
+
 
         // Charger le fichier FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application_views/main-layout.fxml"));

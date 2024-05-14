@@ -20,7 +20,7 @@
                <Font name="Open Sans Regular" size="16.0" />
             </font>
          </Label>
-         <ProgressBar fx:id="songProgressBar" layoutX="197.0" layoutY="95.0" pickOnBounds="false" prefHeight="14.0" prefWidth="431.0" progress="0.0" AnchorPane.bottomAnchor="18.60000000000001" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="198.20000000000005" AnchorPane.topAnchor="95.0" />
+         <ProgressBar fx:id="songProgressBar" layoutX="197.0" layoutY="95.0" maxWidth="431.0" pickOnBounds="false" prefHeight="14.0" prefWidth="431.0" progress="0.0" AnchorPane.bottomAnchor="18.60000000000001" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="198.20000000000005" AnchorPane.topAnchor="95.0" />
       <ImageView fx:id="coverSong" fitHeight="80.0" fitWidth="80.0" layoutX="42.0" layoutY="26.0">
          <image>
             <Image url="@../assets/images/album3.jpg" />
@@ -30,7 +30,7 @@
          <Button fx:id="PlayButton" layoutX="429.0" layoutY="52.0" mnemonicParsing="false" onAction="#playButtonClicked" text="Play" />
          <Button fx:id="ResetButton" layoutX="376.0" layoutY="52.0" mnemonicParsing="false" text="Reset" />
          <Button fx:id="NextButton" layoutX="480.0" layoutY="52.0" mnemonicParsing="false" onAction="#nextButtonClicked" text="Next" />
-         <Button layoutX="328.0" layoutY="52.0" mnemonicParsing="false" text="Prev" />
+         <Button fx:id="prevButton" layoutX="328.0" layoutY="52.0" mnemonicParsing="false" onAction="#previousButtonClicked" text="Prev" />
          <Label fx:id="ArtistName" layoutX="133.0" layoutY="49.0" prefHeight="27.0" prefWidth="265.0" text="Artist name" textFill="WHITE">
             <font>
                <Font name="Open Sans Regular" size="13.0" />
@@ -41,6 +41,15 @@
                <Font name="Open Sans Regular" size="13.0" />
             </font>
          </Label>
+         <Button onAction="#likeSong" fx:id="likeButton" layoutX="576.0" layoutY="53.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+            <graphic>
+               <ImageView fx:id="heartImage" fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/images/heart_empty.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
       
       </AnchorPane>
    </children>

@@ -15,16 +15,16 @@
 
 <AnchorPane prefHeight="503.0" prefWidth="586.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.AddSongFormController">
 
-    <VBox alignment="CENTER" layoutX="14.0" prefHeight="540.0" prefWidth="542.0" spacing="10" style="-fx-background-color: #111536;">
-        <Label style="-fx-background-color: #111536;" text="Submit a new song" textFill="WHITE">
+   <VBox alignment="CENTER" layoutX="14.0" prefHeight="540.0" prefWidth="542.0" spacing="10" style="-fx-background-color: #111536;">
+      <Label style="-fx-background-color: #111536;" text="Submit a new song" textFill="WHITE">
          <font>
             <Font name="Open Sans Regular" size="27.0" />
          </font></Label>
-        <GridPane hgap="10" style="-fx-background-color: #111536;" vgap="5">
-        </GridPane>
+      <GridPane hgap="10" style="-fx-background-color: #111536;" vgap="5">
+      </GridPane>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="542.0" style="-fx-background-color: #111536;">
          <children>
-              <Label alignment="TOP_CENTER" style="-fx-background-color: #111536;" text="Title " textFill="WHITE">
+            <Label alignment="TOP_CENTER" style="-fx-background-color: #111536;" text="Title " textFill="WHITE">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
@@ -32,7 +32,7 @@
                   <Font name="Open Sans Regular" size="13.0" />
                </font>
             </Label>
-              <TextField fx:id="titleField" prefHeight="21.0" prefWidth="438.0" style="-fx-background-color: white;">
+            <TextField fx:id="titleField" prefHeight="21.0" prefWidth="438.0" style="-fx-background-color: white;">
                <font>
                   <Font name="Open Sans Regular" size="13.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Font name="Open Sans Regular" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox prefHeight="26.0" prefWidth="304.0" style="-fx-background-color: white;" />
+            <ChoiceBox fx:id="artistChoiceBox" prefHeight="26.0" prefWidth="304.0" style="-fx-background-color: white;" />
             <Button fx:id="addArtistButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="113.0" style="-fx-background-color: #1D1F3E;" text="New Artist" textFill="#ff7a8a">
                <font>
                   <Font name="Open Sans Regular" size="13.0" />
@@ -188,7 +188,7 @@
             </Label>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" style="-fx-background-color: #ff7a8a;" text="SAVE SONG" textFill="WHITE">
+      <Button fx:id="saveSongBtn" mnemonicParsing="false" style="-fx-background-color: #ff7a8a;" text="SAVE SONG" textFill="WHITE">
          <font>
             <Font name="Open Sans Regular" size="19.0" />
          </font>
@@ -198,7 +198,7 @@
             <Font name="Open Sans Regular" size="16.0" />
          </font>
       </Label>
-    </VBox>
- <AnchorPane layoutX="299.0" layoutY="117.0" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="0.0" />
+   </VBox>
+   <AnchorPane layoutX="299.0" layoutY="117.0" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="0.0" />
 
 </AnchorPane>

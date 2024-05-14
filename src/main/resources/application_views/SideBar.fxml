@@ -8,29 +8,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="474.0" prefWidth="205.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.SideBarController">
+<AnchorPane prefHeight="522.0" prefWidth="205.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.SideBarController">
 
     <!-- Logo et nom d'utilisateur -->
     <VBox prefWidth="200" spacing="10" style="-fx-background-color: #111536;">
         <HBox alignment="CENTER" style="-fx-background-color: #111536;">
-            <ImageView fitHeight="56.0" fitWidth="65.0">
-                <Image url="@../assets/images/placeholder.png" />
+            <ImageView fitHeight="65.0" fitWidth="65.0">
+                <Image url="@../assets/images/logo-2.png" />
+            <HBox.margin>
+               <Insets top="10.0" />
+            </HBox.margin>
             </ImageView>
         </HBox>
         <HBox alignment="CENTER" style="-fx-background-color: #111536;">
             <Label text="Music4Me" textFill="WHITE">
             <font>
-               <Font name="Open Sans Regular" size="18.0" />
-            </font></Label>
+               <Font name="Open Sans Regular" size="15.0" />
+            </font>
+            <padding>
+               <Insets top="-14.0" />
+            </padding></Label>
         </HBox>
 
         <!-- Boutons de playlists -->
         <VBox spacing="5" style="-fx-background-color: #111536;">
-            <Button fx:id="homeButton" alignment="TOP_LEFT" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: #1D1F3E;" text="Home" textFill="#ff7a8a">
+            <Button fx:id="homeButton" alignment="TOP_LEFT" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: #1D1F3E;" text="    Home" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="29.0" fitWidth="33.0" preserveRatio="true">
                         <image>
@@ -42,11 +47,11 @@
                <Font name="Open Sans Regular" size="15.0" />
             </font>
             </Button>
-            <Button fx:id="favoritesButton" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" style="-fx-background-color: #1D1F3E;" text="Mes Favoris" textFill="#ff7a8a">
+            <Button fx:id="favoritesButton" alignment="TOP_LEFT" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #1D1F3E;" text="    Mes Favoris" textFill="WHITE">
                 <graphic>
-                    <ImageView fitHeight="46.0" fitWidth="46.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <image>
-                            <Image url="@../assets/images/heart.jpg" />
+                            <Image url="@../assets/images/like.png" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -57,24 +62,11 @@
 
         </VBox>
     </VBox>
-
-    <Button fx:id="settingsButton" alignment="TOP_LEFT" layoutX="-2.0" layoutY="430.0" prefHeight="40.0" prefWidth="207.0" text="Settings">
-        <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0">
-                <image>
-                    <Image url="@../assets/images/settings.png" />
-                </image>
-            </ImageView>
-        </graphic>
-        <opaqueInsets>
-            <Insets right="50.0" />
-        </opaqueInsets>
-    </Button>
-      <Button fx:id="addSongButton" alignment="TOP_LEFT" layoutX="-4.0" layoutY="392.0" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: #1D1F3E;" text="Add a new Song" textFill="#ff7a8a">
+      <Button fx:id="addSongButton" alignment="TOP_LEFT" layoutX="11.0" layoutY="420.0" prefHeight="39.0" prefWidth="178.0" style="-fx-background-color: #1D1F3E;" text=" Import new song" textFill="WHITE">
           <graphic>
-              <ImageView fitHeight="29.0" fitWidth="33.0" preserveRatio="true">
+              <ImageView fitHeight="29.0" fitWidth="25.0" preserveRatio="true">
                   <image>
-                      <Image url="@../assets/images/add-song.png" />
+                      <Image url="@../assets/images/plus_pink.png" />
                   </image>
               </ImageView>
           </graphic>
@@ -82,51 +74,71 @@
          <Font name="Open Sans Regular" size="15.0" />
       </font>
       </Button>
-   <ScrollPane hbarPolicy="NEVER" layoutY="192.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #111536;" vbarPolicy="ALWAYS">
+   <ScrollPane hbarPolicy="NEVER" layoutY="195.0" prefHeight="209.0" prefWidth="200.0" style="-fx-background-color: #111536;" vbarPolicy="ALWAYS">
       <content>
-         <Pane prefHeight="184.0" prefWidth="200.0" style="-fx-background-color: #111536;">
+         <VBox prefHeight="218.0" prefWidth="207.0">
             <children>
-               <VBox prefHeight="218.0" prefWidth="207.0">
-                  <children>
-                     <Button fx:id="playlist1Button1" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" text="Playlist numéro 1 : Les musiques">
-                        <graphic>
-                           <ImageView fitHeight="46.0" fitWidth="46.0">
-                              <image>
-                                 <Image url="@../assets/images/album2.jpg" />
-                              </image>
-                           </ImageView>
-                        </graphic>
-                     </Button>
-                     <Button fx:id="playlist1Button11" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" text="Playlist numéro 1 : Les musiques">
-                        <graphic>
-                           <ImageView fitHeight="46.0" fitWidth="46.0">
-                              <image>
-                                 <Image url="@../assets/images/album2.jpg" />
-                              </image>
-                           </ImageView>
-                        </graphic>
-                     </Button>
-                        <Button fx:id="playlist1Button" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" text="Playlist numéro 1 : Les musiques">
-                            <graphic>
-                                <ImageView fitHeight="46.0" fitWidth="46.0">
-                                    <Image url="@../assets/images/album2.jpg" />
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                     <Button fx:id="playlist1Button2" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" text="Playlist numéro 1 : Les musiques">
-                        <graphic>
-                           <ImageView fitHeight="46.0" fitWidth="46.0">
-                              <image>
-                                 <Image url="@../assets/images/album2.jpg" />
-                              </image>
-                           </ImageView>
-                        </graphic>
-                     </Button>
-                  </children>
-               </VBox>
+               <Button fx:id="playlist1Button1" alignment="TOP_LEFT" prefHeight="66.0" prefWidth="200.0" style="-fx-background-color: #1D1F3E;" text="Playlist numéro 1 : Les musiques" textFill="WHITE">
+                  <graphic>
+                     <ImageView fitHeight="46.0" fitWidth="46.0">
+                        <image>
+                           <Image url="@../assets/images/album2.jpg" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                  <font>
+                     <Font name="Open Sans Regular" size="12.0" />
+                  </font>
+               </Button>
+               <Button fx:id="playlist1Button11" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" style="-fx-background-color: #1D1F3E;" text="Playlist numéro 1 : Les musiques" textFill="WHITE">
+                  <graphic>
+                     <ImageView fitHeight="46.0" fitWidth="46.0">
+                        <image>
+                           <Image url="@../assets/images/album2.jpg" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                  <font>
+                     <Font name="Open Sans Regular" size="12.0" />
+                  </font>
+               </Button>
+                  <Button fx:id="playlist1Button" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" style="-fx-background-color: #1D1F3E;" text="Playlist numéro 1 : Les musiques" textFill="WHITE">
+                      <graphic>
+                          <ImageView fitHeight="46.0" fitWidth="46.0">
+                              <Image url="@../assets/images/album2.jpg" />
+                          </ImageView>
+                      </graphic>
+                  <font>
+                     <Font name="Open Sans Regular" size="12.0" />
+                  </font>
+                  </Button>
+               <Button fx:id="playlist1Button2" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="200.0" style="-fx-background-color: #1D1F3E;" text="Playlist numéro 1 : Les musiques" textFill="WHITE">
+                  <graphic>
+                     <ImageView fitHeight="46.0" fitWidth="46.0">
+                        <image>
+                           <Image url="@../assets/images/album2.jpg" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+                  <font>
+                     <Font name="Open Sans Regular" size="12.0" />
+                  </font>
+               </Button>
             </children>
-         </Pane>
+         </VBox>
       </content>
    </ScrollPane>
+   <Button fx:id="createPlaylistBtn" alignment="TOP_LEFT" layoutX="11.0" layoutY="468.0" prefHeight="39.0" prefWidth="178.0" style="-fx-background-color: #1D1F3E;" text="Create Playlist" textFill="WHITE">
+      <graphic>
+         <ImageView fitHeight="29.0" fitWidth="25.0" preserveRatio="true">
+            <image>
+               <Image url="@../assets/images/plus_pink.png" />
+            </image>
+         </ImageView>
+      </graphic>
+      <font>
+         <Font name="Open Sans Regular" size="15.0" />
+      </font>
+   </Button>
 
 </AnchorPane>
