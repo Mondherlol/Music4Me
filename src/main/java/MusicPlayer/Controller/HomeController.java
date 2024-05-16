@@ -1,6 +1,7 @@
 package MusicPlayer.Controller;
 
 import MusicPlayer.Main;
+import MusicPlayer.Model.Playlist;
 import MusicPlayer.Model.Song;
 import MusicPlayer.Utils.DBConnexion;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -21,16 +23,16 @@ import javafx.scene.text.Font;
 
 import java.io.File;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class HomeController {
 
     private Main main;
+
     @FXML
-    private ListView<String> songListView;
-    @FXML
-    private HBox newSonsHBox;
-    private ObservableList<String> songList = FXCollections.observableArrayList();
+    private FlowPane songList;
 
     @FXML
     protected void initialize() {
@@ -51,11 +53,9 @@ public class HomeController {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            // Effacer la liste des chansons existantes
-            songList.clear();
 
             // Effacer les éléments existants dans la HBox
-            newSonsHBox.getChildren().clear();
+            songList.getChildren().clear();
 
             // Ajout des titres des chansons à la liste observable
             while (resultSet.next()) {
@@ -69,6 +69,7 @@ public class HomeController {
 
                 Song song = new Song();
                 song.setId(id);
+                System.out.println("Song ID : "+song.getId());
                 song.setTitle(title);
                 song.setArtist(artist);
                 song.setCover(cover);
@@ -77,7 +78,6 @@ public class HomeController {
 
 
 
-                songList.add(id + " - " + title);
 
                 // Créer un nouvel élément visuel pour chaque chanson
                 VBox songBox = new VBox();
@@ -114,17 +114,46 @@ public class HomeController {
 
                 // Créer le menu contextuel pour le titre de la chanson
                 ContextMenu contextMenu = new ContextMenu();
+
                 MenuItem playMenuItem = new MenuItem("Play Song");
-                playMenuItem.setOnAction( event -> PlaySong(song) );
+                playMenuItem.setOnAction(event -> PlaySong(song));
 
                 MenuItem updateMenuItem = new MenuItem("Update");
+                updateMenuItem.setOnAction(event -> EditSong(song));
+
                 MenuItem deleteMenuItem = new MenuItem("Delete");
                 deleteMenuItem.setOnAction(event -> confirmDeleteButtonClicked(song));
-                MenuItem addToPlaylistMenuItem = new MenuItem("Add To Playlist");
+
                 MenuItem addToMusicQueueMenuItem = new MenuItem("Add To Music Queue");
                 addToMusicQueueMenuItem.setOnAction(event -> AddSongToQueue(song));
-                contextMenu.getItems().addAll(playMenuItem, updateMenuItem, deleteMenuItem, addToPlaylistMenuItem, addToMusicQueueMenuItem);
-                titleLabel.setContextMenu(contextMenu);
+
+                // Ajoutez ces items directement au ContextMenu
+                contextMenu.getItems().addAll(playMenuItem, updateMenuItem, deleteMenuItem, addToMusicQueueMenuItem);
+
+                // Créer le menu pour "Add To Playlist"
+                Menu addToPlaylistMenu = new Menu("Add To Playlist");
+
+                // Créer un MenuItem pour "Add To Playlist" qui sera ajouté au Menu "addToPlaylistMenu"
+                MenuItem addToPlaylistMenuItem = new MenuItem("Add To Playlist");
+                contextMenu.setOnShowing(event -> {
+                    List<Playlist> playlists = getPlaylistsFromDatabase();
+                    addToPlaylistMenu.getItems().clear(); // Effacez les éléments existants du sous-menu
+                    for (Playlist playlist : playlists) {
+                        MenuItem playlistMenuItem = new MenuItem(playlist.getName());
+                        playlistMenuItem.setOnAction(e -> addSongToPlaylist(song, playlist));
+                        addToPlaylistMenu.getItems().add(playlistMenuItem); // Ajoutez chaque playlist comme MenuItem au sous-menu
+                    }
+                    addToPlaylistMenuItem.setDisable(playlists.isEmpty()); // Désactivez le MenuItem principal s'il n'y a pas de playlists disponibles
+                });
+
+                addToPlaylistMenu.getItems().add(addToPlaylistMenuItem); // Ajoutez le MenuItem principal au sous-menu
+
+            // Ajoutez le sous-menu "Add To Playlist" au ContextMenu principal
+            contextMenu.getItems().add(addToPlaylistMenu);
+
+            // Définissez le menu contextuel pour le titre de la chanson
+            titleLabel.setContextMenu(contextMenu);
+
 
                 // Créer le label pour le nom de l'artiste
                 Label artistLabel = new Label(artist);
@@ -142,7 +171,7 @@ public class HomeController {
 
 
                 // Ajouter la VBox à la HBox
-                newSonsHBox.getChildren().add(songBox);
+                songList.getChildren().add(songBox);
 
             }
 
@@ -151,8 +180,6 @@ public class HomeController {
             statement.close();
             DBConnexion.closeConnection();
 
-            // Mise à jour de la ListView avec la liste des chansons
-            songListView.setItems(songList);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -207,9 +234,6 @@ public class HomeController {
         }
     }
 
-    public String getSelectedSong() {
-        return songListView.getSelectionModel().getSelectedItem();
-    }
 
     @FXML
     protected void OpenPlaylists() {
@@ -228,6 +252,60 @@ public class HomeController {
         Main.getInstance().layoutController.musicPlayerController.addSong(song);
         return null;
     }
+
+    protected EventHandler<ActionEvent> EditSong(Song song) {
+        System.out.println("Editing song infos : " + song.getTitle());
+        Main.getInstance().loadView( "Update-Song-Form.fxml", song.getId());
+        return null;
+    }
+
+    private List<Playlist> getPlaylistsFromDatabase() {
+        List<Playlist> liste = Playlist.getAllPlaylists();
+        return liste;
+    }
+
+    protected EventHandler<ActionEvent> addSongToPlaylist(Song song, Playlist playlist) {
+        System.out.println("Adding song to playlist : " + song.getTitle());
+
+        // Vérifier si la musique est déjà dans la playlist
+        if (isSongAlreadyInPlaylist(song.getId(), playlist.getId()) ){
+            // Afficher une alerte à l'utilisateur
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("La musique est déjà dans la playlist !");
+            alert.showAndWait();
+            return null;
+        }
+
+        // Ajouter la musique à la playlist
+        System.out.println("Musique non trouvée dans la playlist. Ajout de la musique à la playlist...");
+        playlist.addSongToPlaylist(song.getId());
+
+        System.out.println(" Musique ajoutée avec succès à la playlist : " + playlist.getName());
+
+        // Afficher une alerte à l'utilisateur
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText("Musique ajoutée avec succès à la playlist : " + playlist.getName());
+        alert.showAndWait();
+
+        return null;
+    }
+
+    private boolean isSongAlreadyInPlaylist(int songId, int playlistId){
+        Playlist playlist = Playlist.getPlaylistById(playlistId);
+        List<Song> playlist_songs = playlist.getSongs();
+
+        for (Song song : playlist_songs) {
+            if (song.getId() == songId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 }

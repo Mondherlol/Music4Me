@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.text.Font?>
-<?import javafx.geometry.Insets?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="MusicPlayer.Controller.PlayListViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
-
-    <VBox alignment="CENTER" spacing="20" />
-    <ScrollPane layoutX="28.0" layoutY="49.0" prefHeight="216.0" prefWidth="543.0" style="-fx-background-color: #111536;" vbarPolicy="NEVER">
-        <content>
-            <HBox fx:id="newSonsHBox" alignment="CENTER_LEFT" prefHeight="209.0" prefWidth="549.0" style="-fx-background-color: #111536;">
-                <children>
-                    <VBox alignment="CENTER" maxWidth="150.0" prefHeight="181.0" prefWidth="138.0" style="-fx-background-color: #1D1F3E;">
+<AnchorPane prefHeight="519.0" prefWidth="698.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.PlayListViewController">
+   <VBox alignment="BOTTOM_CENTER" prefHeight="519.0" prefWidth="698.0">
+      <children>
+         <HBox alignment="CENTER" prefHeight="150.0" prefWidth="486.0">
+            <children>
+               <ImageView fx:id="coverImage" fitHeight="150.0" fitWidth="376.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/images/album2.jpg" />
+                  </image>
+               </ImageView>
+               <VBox prefHeight="38.0" prefWidth="288.0">
+                  <children>
+                      <Label prefHeight="15.0" prefWidth="286.0" text="Votre playlist" textFill="WHITE">
+                          <font>
+                              <Font name="Open Sans Regular" size="12.0" />
+                          </font>
+                      </Label>
+                     <Label fx:id="playlistName" prefHeight="48.0" prefWidth="286.0" text="Nom Playlist" textFill="WHITE">
+                        <font>
+                           <Font name="Open Sans Bold" size="40.0" />
+                        </font>
+                     </Label>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
                         <children>
-                            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                                <graphic>
-                                    <ImageView
-                                            fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../assets/images/album3.jpg" />
-                                        </image>
-                                    </ImageView>
-                                </graphic>
-                            </Button>
-                            <Label prefHeight="28.0" prefWidth="118.0" style="-fx-font-weight: bold;" text="Title song" textFill="WHITE">
-                                <font>
-                                    <Font name="Open Sans Regular" size="19.0" />
-                                </font>
-                                <contextMenu>
-                                    <ContextMenu>
-                                        <items>
-                                            <MenuItem mnemonicParsing="false" text="Play Song" />
-                                            <MenuItem mnemonicParsing="false" text="Update" />
-                                            <MenuItem fx:id="miDelete" mnemonicParsing="false" text="Delete" />
-                                            <MenuItem mnemonicParsing="false" text="Add To Playlist" />
-                                        </items>
-                                    </ContextMenu>
-                                </contextMenu>
-                            </Label>
-                            <Label prefHeight="13.0" prefWidth="118.0" style="-fx-font-weight: bold;" text="Author Name" textFill="WHITE">
-                                <font>
-                                    <Font name="Open Sans Regular" size="12.0" />
-                                </font>
-                            </Label>
+                           <Button fx:id="updateButton" mnemonicParsing="false" style="-fx-background-color: #00ff44;" text="Edit infos">
+                              <font>
+                                 <Font name="Open Sans Bold" size="17.0" />
+                              </font>
+                           </Button>
+                           <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-color: #fc1e1e;" text="Delete" textFill="WHITE">
+                              <font>
+                                 <Font name="Open Sans Bold" size="17.0" />
+                              </font>
+                              <HBox.margin>
+                                 <Insets left="10.0" />
+                              </HBox.margin>
+                           </Button>
                         </children>
-                        <HBox.margin>
-                            <Insets bottom="25.0" left="15.0" right="15.0" top="10.0" />
-                        </HBox.margin>
-                    </VBox>
-                </children>
-            </HBox>
-        </content>
-    </ScrollPane>
-    <ListView fx:id="songListView" layoutX="51.0" layoutY="276.0" prefHeight="131.0" prefWidth="200.0" />
-    <Label layoutX="42.0" layoutY="14.0" text="New Songs" textFill="WHITE">
-        <font>
-            <Font name="Open Sans Bold" size="20.0" />
-        </font>
-    </Label>
+                        <opaqueInsets>
+                           <Insets top="20.0" />
+                        </opaqueInsets>
+                     </HBox>
+                  </children>
+                  <padding>
+                     <Insets left="15.0" top="10.0" />
+                  </padding>
+               </VBox>
+            </children>
+         </HBox>
+         <Text fx:id="description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description : Ceci est une description de cette playlist." wrappingWidth="427.71366596221924">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </Text>
+          <!-- ScrollPane to contain music cards -->
+          <ScrollPane fitToWidth="true" prefWidth="698.0" style="-fx-background-color: #1D1F3E;">
+              <content>
+                  <FlowPane fx:id="songList" hgap="10" prefHeight="264.0" prefWidth="697.0" style="-fx-background-color: #1D1F3E;" vgap="10">
+                  <padding>
+                     <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                  </padding></FlowPane>
+              </content>
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin>
+          </ScrollPane>
+      </children>
+   </VBox>
 </AnchorPane>

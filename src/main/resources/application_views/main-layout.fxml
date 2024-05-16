@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="rootPane" prefHeight="600" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="MusicPlayer.Controller.LayoutController">
+<BorderPane style="-fx-background-color: #111536;" fx:id="rootPane" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.LayoutController">
 
     <!-- Barre latérale -->
     <left>
-        <VBox id="sidebar" prefWidth="200" style="-fx-background-color: #111536;">
+        <VBox fx:id="sideBarRooter" id="sidebar" prefWidth="200" style="-fx-background-color: #111536;">
             <!-- Ajoutez vos éléments de la barre latérale ici -->
-            <fx:include source="SideBar.fxml" />
+    <!--      <fx:include source="SideBar.fxml" /> -->
 
         </VBox>
     </left>
@@ -18,7 +18,7 @@
 
     <!-- Zone principale de contenu -->
     <center>
-        <VBox id="content" prefWidth="200" style="-fx-background-color: #fff;">
+        <VBox id="content" alignment="CENTER" prefWidth="200" style="-fx-background-color: #1D1F3E;">
             <Button onAction="#changeContent" text="Change Content" />
 
             <!-- Ajoutez vos éléments de la barre latérale ici -->

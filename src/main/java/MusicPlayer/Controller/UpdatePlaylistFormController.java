@@ -5,10 +5,7 @@ import MusicPlayer.Model.Playlist;
 import MusicPlayer.Model.Song;
 import MusicPlayer.Utils.DBConnexion;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -21,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPlaylistController {
+public class UpdatePlaylistFormController {
 
     @FXML
     private TextField playlistNameField;
@@ -38,6 +35,10 @@ public class AddPlaylistController {
     @FXML
     private ImageView coverImage;
     private String coverImagePath;
+
+    private Playlist playlist;
+
+    private int playlistId;
 
     @FXML
     public void initialize() {
@@ -56,47 +57,28 @@ public class AddPlaylistController {
             }
 
             List<Song> emptySongList = new ArrayList<>();
-            Playlist newPlaylist = new Playlist(0, name, description, emptySongList, coverPath);
+            Playlist newPlaylist = new Playlist(playlistId, name, description, emptySongList, coverPath);
 
-            addPlaylist(newPlaylist);
+            updatePlaylist(newPlaylist);
 
             playlistNameField.clear();
             playlistDescriptionArea.clear();
             errorLabel.setText("");
-            System.out.println("Playlist enregistrée avec succès dans la base de données.");
+            System.out.println("Playlist modifiée avec succès dans la base de données.");
+
+
 
             Main.getInstance().layoutController.sideBarController.resetPlaylists();
-            Main.getInstance().layoutController.loadView("Home-view.fxml");
+            Main.getInstance().loadView("Playlist-view.fxml",playlistId);
         } catch (SQLException e) {
             errorLabel.setText("Erreur lors de l'enregistrement de la playlist : " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private void addPlaylist(Playlist playlist) throws SQLException {
-        Connection connection = DBConnexion.getConnection();
-        if (connection == null) {
-            System.out.println("La connexion à la base de données a échoué.");
-            return;
-        }
+    private void updatePlaylist(Playlist playlist) throws SQLException {
+      playlist.updatePlaylist();
 
-        String query = "INSERT INTO playlists (id, name, description, cover) VALUES (default, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, playlist.getName());
-            preparedStatement.setString(2, playlist.getDescription());
-            preparedStatement.setString(3, playlist.getCover());
-            preparedStatement.executeUpdate();
-
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                int id = generatedKeys.getInt(1);
-                playlist.setId(id);
-            }
-
-            System.out.println("Playlist enregistrée avec succès dans la base de données.");
-        } finally {
-            connection.close();
-        }
     }
 
     @FXML
@@ -110,5 +92,16 @@ public class AddPlaylistController {
             coverImagePath = selectedFile.getPath();
             coverImage.setImage(new Image(selectedFile.toURI().toString()));
         }
+    }
+
+    public void setPlaylistId(int playlistId) {
+        this.playlistId = playlistId;
+        playlist = Playlist.getPlaylistById(playlistId);
+
+        playlistNameField.setText(playlist.getName());
+        playlistDescriptionArea.setText(playlist.getDescription());
+        coverImagePath = playlist.getCover();
+        coverImage.setImage(new Image(coverImagePath));
+
     }
 }

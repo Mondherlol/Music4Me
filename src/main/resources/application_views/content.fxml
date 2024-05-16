@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="400">
+
+
+<VBox alignment="CENTER" prefHeight="400" prefWidth="600" style="-fx-background-color: #1D1F3E;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
     <!-- Contenu dynamique de la zone principale -->
 </VBox>

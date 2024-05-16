@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -35,13 +36,13 @@ public class MusicPlayerController implements Initializable {
     @FXML
     private Label songTitle, ArtistName;
     @FXML
-    private Button PlayButton, ResetButton, NextButton, prevButton, likeButton;
+    private Button PlayButton, NextButton, prevButton, likeButton;
     @FXML
     private Slider VolumeSlider;
     @FXML
     private ProgressBar songProgressBar;
     @FXML
-    private ImageView coverSong, heartImage;
+    private ImageView coverSong, heartImage, playImage;
     private boolean isPlaying;
     private Timer timer;
     private TimerTask task;
@@ -51,6 +52,9 @@ public class MusicPlayerController implements Initializable {
     private File directory;
     private File[] files;
 
+    @FXML
+    Text totalSongTime, currentSongTime;
+
     private Media media;
     private MediaPlayer mediaPlayer;
 
@@ -58,6 +62,9 @@ public class MusicPlayerController implements Initializable {
 
     private static final String HEART_FULL_IMAGE = "/assets/images/heart_full.png";
     private static final String HEART_EMPTY_IMAGE = "/assets/images/heart_empty.png";
+
+    private static final String PLAY_IMAGE = "/assets/images/play_white.png";
+    private static final String PAUSE_IMAGE = "/assets/images/pause_white.png";
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -67,13 +74,11 @@ public class MusicPlayerController implements Initializable {
         // Disable buttons
         NextButton.setDisable(true);
         prevButton.setDisable(true);
-        ResetButton.setDisable(true);
         PlayButton.setDisable(true);
+        likeButton.setDisable(true);
 
-
-
-
-
+        currentSongTime.setText("0:00");
+        totalSongTime.setText("0:00");
 
 
 
@@ -161,6 +166,18 @@ public class MusicPlayerController implements Initializable {
             System.err.println("Erreur lors du chargement de l'image : " +  HEART_TYPE +" "+ e.getMessage());
         }
     }
+    private void changePlayImage(String PLAY_TYPE){
+        try {
+            URL playUrl = getClass().getResource(PLAY_TYPE);
+            if (playUrl != null) {
+                playImage.setImage(new Image(playUrl.toExternalForm()));
+            } else {
+                System.err.println("Impossible de charger l'image."+ PLAY_TYPE);
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement de l'image : " +  PLAY_TYPE +" "+ e.getMessage());
+        }
+    }
 
     public void playMedia() {
         System.out.println("Begin timer");
@@ -218,7 +235,7 @@ public class MusicPlayerController implements Initializable {
         // Code pour démarrer la lecture de la musique
         playMedia();
 
-        PlayButton.setText("Pause");
+        changePlayImage(PAUSE_IMAGE);
         PlayButton.setOnAction(e -> pauseButtonClicked());
     }
 
@@ -228,26 +245,17 @@ public class MusicPlayerController implements Initializable {
         pauseMedia();
 
         isPlaying = false;
-        PlayButton.setText("Play");
+        changePlayImage(PLAY_IMAGE);
         PlayButton.setOnAction(e -> playButtonClicked());
     }
 
-    @FXML
-    protected void stopButtonClicked() {
-        // Code pour arrêter la musique
-        songTitle.setText("Now Playing: No Song Selected");
-        isPlaying = false;
-        PlayButton.setText("Play");
-        PlayButton.setOnAction(e -> playButtonClicked());
-
-    }
 
     @FXML
     protected void nextButtonClicked() {
         songNumber = (songNumber + 1) % songs.size();
         playSong(songs.get(songNumber));
 
-        PlayButton.setText("Pause");
+        changePlayImage(PAUSE_IMAGE);
         PlayButton.setOnAction(e -> pauseButtonClicked());
     }
 
@@ -256,7 +264,7 @@ public class MusicPlayerController implements Initializable {
         songNumber = (songNumber - 1 + songs.size()) % songs.size();
         playSong(songs.get(songNumber));
 
-        PlayButton.setText("Pause");
+        changePlayImage(PAUSE_IMAGE);
         PlayButton.setOnAction(e -> pauseButtonClicked());
     }
 
@@ -319,14 +327,35 @@ public class MusicPlayerController implements Initializable {
             {
                 NextButton.setDisable(false);
                 prevButton.setDisable(false);
-                PlayButton.setDisable(false);
-                ResetButton.setDisable(false);
             }
+            PlayButton.setDisable(false);
+            likeButton.setDisable(false);
+
+            changePlayImage(PAUSE_IMAGE);
+            PlayButton.setOnAction(e -> pauseButtonClicked());
+
+            // Mettre à jour le temps total de la chanson
+            mediaPlayer.setOnReady(() -> {
+                Duration totalDuration = media.getDuration();
+                totalSongTime.setText(formatDuration(totalDuration));
+            });
+
+            currentSongTime.setText("0:00");
+
+            mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                currentSongTime.setText(formatDuration(newValue));
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
             // Handle the exception
         }
+    }
+
+    private String formatDuration(Duration totalDuration) {
+        int minutes = (int) totalDuration.toMinutes();
+        int seconds = (int) totalDuration.toSeconds() % 60;
+        return minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
     }
 
     public void addSong(Song song) {
@@ -349,7 +378,9 @@ public class MusicPlayerController implements Initializable {
             NextButton.setDisable(false);
             prevButton.setDisable(false);
             PlayButton.setDisable(false);
-            ResetButton.setDisable(false);
         }
     };
+
+    public void setId(int id) {
+    }
 }

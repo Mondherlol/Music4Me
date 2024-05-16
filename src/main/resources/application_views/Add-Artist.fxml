@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,83 +13,158 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="710.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.AddArtistController">
+<AnchorPane prefHeight="548.0" prefWidth="574.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.AddArtistController">
     <children>
-        <GridPane alignment="CENTER" hgap="10" layoutX="35.0" layoutY="27.0" prefHeight="400.0" prefWidth="750.0" vgap="10">
-            <columnConstraints>
-                <ColumnConstraints>
-                    <hgrow>SOMETIMES</hgrow>
-                    <maxWidth>175.0</maxWidth>
-                    <minWidth>10.0</minWidth>
-                    <prefWidth>175.0</prefWidth>
-                </ColumnConstraints>
-                <ColumnConstraints>
-                    <hgrow>SOMETIMES</hgrow>
-                    <maxWidth>400.0</maxWidth>
-                    <minWidth>10.0</minWidth>
-                    <prefWidth>375.0</prefWidth>
-                </ColumnConstraints>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints>
-                    <maxHeight>67.0</maxHeight>
-                    <minHeight>10.0</minHeight>
-                    <prefHeight>30.0</prefHeight>
-                    <vgrow>SOMETIMES</vgrow>
-                </RowConstraints>
-                <RowConstraints>
-                    <maxHeight>200.0</maxHeight>
-                    <minHeight>10.0</minHeight>
-                    <prefHeight>100.0</prefHeight>
-                    <vgrow>SOMETIMES</vgrow>
-                </RowConstraints>
-                <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                <RowConstraints>
-                    <maxHeight>200.0</maxHeight>
-                    <minHeight>10.0</minHeight>
-                    <prefHeight>100.0</prefHeight>
-                    <vgrow>SOMETIMES</vgrow>
-                </RowConstraints>
-                <RowConstraints />
-            </rowConstraints>
-            <children>
-                <Label text="Nom de l'artiste :" />
-                <TextField fx:id="nomTextField" GridPane.columnIndex="1" />
-                <Label text="Image de l'artiste :" GridPane.rowIndex="1" />
-                <Button fx:id="imageButton" onAction="#chooseImage" text="Choisir une image" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label fx:id="imagePathLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                <Label text="Biographie :" GridPane.rowIndex="3" />
-                <TextArea fx:id="bioTextArea" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            </children>
-        </GridPane>
-        <Button fx:id="saveButton" layoutX="224.0" layoutY="457.0" onAction="#saveArtist" text="Enregistrer" />
-        <Button layoutX="46.0" layoutY="457.0" onAction="#clearFields" text="Clear" />
-        <Button fx:id="afficherButton" layoutX="374.0" layoutY="457.0" onAction="#afficherArtists" text="Afficher" />
-        <Button fx:id="supprimerButton" layoutX="484.0" layoutY="457.0" onAction="#supprimerAction" text="Supprimer" />
-        <Button fx:id="modifierButton" layoutX="624.0" layoutY="457.0" onAction="#modifierAction" text="Modifier" />
-
-
-        <TableView fx:id="artistTableView" layoutX="-7.0" layoutY="488.0" prefHeight="256.0" prefWidth="867.0">
-            <columns>
-                <TableColumn prefWidth="150" text="Nom">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="name" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn prefWidth="300" text="Biographie">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="biography" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn prefWidth="150" text="Image URL">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="imageUrl" />
-                    </cellValueFactory>
-                </TableColumn>
-
-            </columns>
-        </TableView>
+      <VBox alignment="TOP_CENTER" layoutX="-6.0" prefHeight="549.0" prefWidth="586.0" style="-fx-background-color: #111536;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="526.0" text="Add an artist" textAlignment="CENTER" textFill="#ff82fb">
+               <font>
+                  <Font name="Open Sans Bold" size="27.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </Label>
+              <GridPane alignment="CENTER" hgap="10" prefHeight="214.0" prefWidth="426.0" style="-fx-background-color: #111536;" vgap="10">
+                  <columnConstraints>
+                      <ColumnConstraints>
+                          <hgrow>SOMETIMES</hgrow>
+                          <maxWidth>175.0</maxWidth>
+                          <minWidth>10.0</minWidth>
+                          <prefWidth>175.0</prefWidth>
+                      </ColumnConstraints>
+                      <ColumnConstraints>
+                          <hgrow>SOMETIMES</hgrow>
+                          <maxWidth>400.0</maxWidth>
+                          <minWidth>10.0</minWidth>
+                          <prefWidth>375.0</prefWidth>
+                      </ColumnConstraints>
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints>
+                          <maxHeight>67.0</maxHeight>
+                          <minHeight>10.0</minHeight>
+                          <prefHeight>24.19999542236328</prefHeight>
+                          <vgrow>SOMETIMES</vgrow>
+                      </RowConstraints>
+                      <RowConstraints>
+                          <maxHeight>200.0</maxHeight>
+                          <minHeight>0.0</minHeight>
+                          <prefHeight>23.800004577636727</prefHeight>
+                          <vgrow>SOMETIMES</vgrow>
+                      </RowConstraints>
+                      <RowConstraints maxHeight="200.0" minHeight="9.599996948242193" prefHeight="19.400009155273438" vgrow="SOMETIMES" />
+                      <RowConstraints>
+                          <maxHeight>272.8000030517578</maxHeight>
+                          <minHeight>10.0</minHeight>
+                          <prefHeight>63.20001220703125</prefHeight>
+                          <vgrow>SOMETIMES</vgrow>
+                      </RowConstraints>
+                  </rowConstraints>
+                  <children>
+                      <Label text="Artist name" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans Bold" size="14.0" />
+                     </font>
+                  </Label>
+                      <TextField fx:id="nomTextField" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="14.0" />
+                     </font>
+                  </TextField>
+                      <Label text="Artist picture" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Bold" size="14.0" />
+                     </font>
+                  </Label>
+                      <Button fx:id="imageButton" onAction="#chooseImage" text="Choisir une image" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="14.0" />
+                     </font>
+                  </Button>
+                      <Label fx:id="imagePathLabel" text="" textFill="#6cff73" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="14.0" />
+                     </font>
+                  </Label>
+      
+                            <Label text="Bio:" textFill="WHITE" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Bold" size="14.0" />
+                     </font>
+                  </Label>
+                      <TextArea fx:id="bioTextArea" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="14.0" />
+                     </font>
+                  </TextArea>
+                  </children>
+              </GridPane>
+              <Button fx:id="saveButton" contentDisplay="CENTER" onAction="#saveArtist" style="-fx-background-color: #05f41d;" text="Save this artist">
+               <font>
+                  <Font name="Open Sans Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="243.0" prefWidth="571.0">
+               <children>
+            
+            
+                    <TableView fx:id="artistTableView" prefHeight="174.0" prefWidth="498.0">
+                        <columns>
+                            <TableColumn prefWidth="150" text="Name">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="name" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="140.79998779296875" text="Bio">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="biography" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="230.4000305175781" text="Image URL">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="imageUrl" />
+                                </cellValueFactory>
+                            </TableColumn>
+            
+                        </columns>
+                    </TableView>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                     <buttons>
+                          <Button fx:id="afficherButton" onAction="#afficherArtists" style="-fx-background-color: FF7A8A;" text="Show" textFill="#1d1f3e">
+                           <font>
+                              <Font name="Open Sans Bold" size="15.0" />
+                           </font>
+                        </Button>
+                          <Button onAction="#clearFields" style="-fx-background-color: #0daecf;" text="Clear" textFill="WHITE">
+                           <font>
+                              <Font name="Open Sans Bold" size="15.0" />
+                           </font>
+                        </Button>
+                          <Button fx:id="supprimerButton" onAction="#supprimerAction" style="-fx-background-color: #ff1a1a;" text="Delete" textFill="#d7d7d7">
+                           <font>
+                              <Font name="Open Sans Bold" size="15.0" />
+                           </font>
+                        </Button>
+                          <Button fx:id="modifierButton" onAction="#modifierAction" style="-fx-background-color: #eeff00;" text="Edit">
+                           <font>
+                              <Font name="Open Sans Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </buttons>
+                  </ButtonBar>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
+         </padding>
+      </VBox>
     </children>
 </AnchorPane>

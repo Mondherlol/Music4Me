@@ -14,90 +14,29 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class PlayListViewController {
-    private int playlistId;
+public class FavoritesSongsController {
 
     @FXML
-    ImageView coverImage;
+    private FlowPane songList;
 
     @FXML
-    Label playlistName;
-
-    @FXML
-    Text description;
-
-    @FXML
-    FlowPane songList;
-
-    @FXML
-    Button updateButton, deleteButton;
-
-
-    private Playlist playlist;
-    public void initialize()  throws IOException {
-            updateButton.setOnAction(event -> {
-                Main.getInstance().loadView("Update-Playlist-Form.fxml", playlistId);
-            });
-
-            deleteButton.setOnAction(event -> {
-                confirmDeletePlaylist();
-            });
+    public void initialize() {
+        loadsSongs();
     }
 
-    public void confirmDeletePlaylist(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation de suppression");
-        alert.setHeaderText(null);
-        alert.setContentText("Voulez-vous vraiment supprimer cette playlist ?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-                playlist.deletePlaylist();
-                Main.getInstance().layoutController.sideBarController.resetPlaylists();
-                Main.getInstance().loadView("Home-view.fxml");
-        }
-    }
-
-    public void setPlaylistId(int playlistId) {
-        this.playlistId = playlistId;
-         playlist = Playlist.getPlaylistById(playlistId);
-
-        if(playlist == null){
-            System.out.println("Playlist not found");
-            Main.getInstance().loadView("Home-view.fxml");
-        }
-
-        playlistName.setText(playlist.getName());
-        description.setText(playlist.getDescription());
-        coverImage.setImage( new Image(playlist.getCover()));
-
-
-        List<Song> songs = playlist.getSongs();
-
-        for (Song song : songs) {
-            loadSongBox(song);
-        }
-
-        if(songs.isEmpty()){
-            Text noSongsText = new Text("Aucune chanson trouvée dans cette playlist.");
-            noSongsText.setFont(Font.font("Open Sans Regular", 20.0));
-            noSongsText.setFill(Color.WHITE);
-            songList.getChildren().add(noSongsText);
-        }
-    }
 
     public void loadSongBox(Song song){
         // Créer un nouvel élément visuel pour chaque chanson
@@ -290,7 +229,7 @@ public class PlayListViewController {
                     System.out.println("Nombre de lignes affectées : " + rowsAffected);
 
                     if (rowsAffected > 0) {
-                        setPlaylistId(playlistId);
+                        loadsSongs();
                         System.out.println("Chanson supprimée avec succès de la base de données.");
                     } else {
                         System.out.println("La chanson n'a pas été trouvée dans la base de données.");
@@ -307,6 +246,14 @@ public class PlayListViewController {
             errorAlert.setHeaderText(null);
             errorAlert.setContentText("Veuillez sélectionner une chanson à supprimer.");
             errorAlert.showAndWait();
+        }
+    }
+
+    private void loadsSongs() {
+        songList.getChildren().clear();
+        List<Song> songs = Song.getFavoriteSongs();
+        for (Song song : songs) {
+            loadSongBox(song);
         }
     }
 

@@ -9,39 +9,60 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.MusicPlayerController">
+<VBox alignment="BOTTOM_LEFT" prefHeight="139.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.MusicPlayerController">
    <children>
-      <AnchorPane prefHeight="127.0" prefWidth="826.0" style="-fx-background-color: #1D1F3E;">
+      <AnchorPane prefHeight="146.0" prefWidth="826.0" style="-fx-background-color: #1D1F3E;">
       
        <!-- Titre de la chanson -->
-       <Label fx:id="songTitle" layoutX="133.0" layoutY="24.0" prefHeight="27.0" prefWidth="265.0" text="Name of the song" textFill="#ff7a8a">
+       <Label fx:id="songTitle" layoutX="133.0" layoutY="24.0" prefHeight="27.0" prefWidth="265.0" text="No song selected." textFill="#ff7a8a">
             <font>
                <Font name="Open Sans Regular" size="16.0" />
             </font>
          </Label>
-         <ProgressBar fx:id="songProgressBar" layoutX="197.0" layoutY="95.0" maxWidth="431.0" pickOnBounds="false" prefHeight="14.0" prefWidth="431.0" progress="0.0" AnchorPane.bottomAnchor="18.60000000000001" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="198.20000000000005" AnchorPane.topAnchor="95.0" />
+         <ProgressBar fx:id="songProgressBar" layoutX="232.0" layoutY="101.0" pickOnBounds="false" prefHeight="14.0" prefWidth="379.0" progress="0.0" />
       <ImageView fx:id="coverSong" fitHeight="80.0" fitWidth="80.0" layoutX="42.0" layoutY="26.0">
          <image>
-            <Image url="@../assets/images/album3.jpg" />
+            <Image url="@../assets/images/song_placeholder.png" />
          </image>
       </ImageView>
-      <Slider fx:id="VolumeSlider" layoutX="672.0" layoutY="95.0" style="ba: black;" />
-         <Button fx:id="PlayButton" layoutX="429.0" layoutY="52.0" mnemonicParsing="false" onAction="#playButtonClicked" text="Play" />
-         <Button fx:id="ResetButton" layoutX="376.0" layoutY="52.0" mnemonicParsing="false" text="Reset" />
-         <Button fx:id="NextButton" layoutX="480.0" layoutY="52.0" mnemonicParsing="false" onAction="#nextButtonClicked" text="Next" />
-         <Button fx:id="prevButton" layoutX="328.0" layoutY="52.0" mnemonicParsing="false" onAction="#previousButtonClicked" text="Prev" />
-         <Label fx:id="ArtistName" layoutX="133.0" layoutY="49.0" prefHeight="27.0" prefWidth="265.0" text="Artist name" textFill="WHITE">
+      <Slider fx:id="VolumeSlider" layoutX="672.0" layoutY="95.0" stylesheets="@../assets/style/style.css" value="25.0" />
+         <Button fx:id="PlayButton" layoutX="399.0" layoutY="51.0" mnemonicParsing="false" onAction="#playButtonClicked" prefHeight="34.0" prefWidth="23.0" style="-fx-background-color: transparent;">
+            <graphic>
+               <ImageView fx:id="playImage" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/images/play_white.png" />
+                  </image>
+               </ImageView>
+            </graphic></Button>
+         <Button fx:id="NextButton" layoutX="460.0" layoutY="54.0" mnemonicParsing="false" onAction="#nextButtonClicked" style="-fx-background-color: transparent;">
+            <graphic>
+               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/images/next.png" />
+                  </image>
+               </ImageView>
+            </graphic></Button>
+         <Button fx:id="prevButton" layoutX="333.0" layoutY="54.0" mnemonicParsing="false" onAction="#previousButtonClicked" style="-fx-background-color: transparent;">
+            <graphic>
+               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/images/previous.png" />
+                  </image>
+               </ImageView>
+            </graphic></Button>
+         <Label fx:id="ArtistName" layoutX="133.0" layoutY="49.0" prefHeight="27.0" prefWidth="140.0" textFill="WHITE">
             <font>
                <Font name="Open Sans Regular" size="13.0" />
             </font>
          </Label>
-         <Label alignment="CENTER" layoutX="676.0" layoutY="52.0" prefHeight="27.0" prefWidth="130.0" text="Volume" textFill="WHITE">
+         <Label alignment="CENTER" layoutX="677.0" layoutY="62.0" prefHeight="27.0" prefWidth="130.0" text="Volume" textFill="WHITE">
             <font>
-               <Font name="Open Sans Regular" size="13.0" />
+               <Font name="Open Sans Regular" size="15.0" />
             </font>
          </Label>
-         <Button onAction="#likeSong" fx:id="likeButton" layoutX="576.0" layoutY="53.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+         <Button fx:id="likeButton" layoutX="576.0" layoutY="53.0" mnemonicParsing="false" onAction="#likeSong" style="-fx-background-color: transparent;">
             <graphic>
                <ImageView fx:id="heartImage" fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -50,6 +71,16 @@
                </ImageView>
             </graphic>
          </Button>
+         <Text fx:id="currentSongTime" fill="WHITE" layoutX="197.0" layoutY="110.0" strokeWidth="0.0" text="0:0" textAlignment="RIGHT" wrappingWidth="24.20001220703125">
+            <font>
+               <Font name="Open Sans Regular" size="12.0" />
+            </font>
+         </Text>
+         <Text fx:id="totalSongTime" fill="WHITE" layoutX="618.0" layoutY="110.0" strokeWidth="0.0" text="0:0" textAlignment="RIGHT" wrappingWidth="24.20001220703125">
+            <font>
+               <Font name="Open Sans Regular" size="12.0" />
+            </font>
+         </Text>
       
       </AnchorPane>
    </children>

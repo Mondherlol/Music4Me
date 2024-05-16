@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="503.0" prefWidth="586.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.AddPlaylistController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #111536;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayer.Controller.UpdatePlaylistFormController">
 
     <VBox alignment="CENTER" layoutX="14.0" prefHeight="540.0" prefWidth="542.0" spacing="10" style="-fx-background-color: #111536;">
-        <Label style="-fx-background-color: #111536;" text="Create a Playlist" textFill="WHITE">
+        <Label style="-fx-background-color: #111536;" text="Edit Playlist" textFill="WHITE">
             <font>
                 <Font name="Open Sans Regular" size="27.0" />
             </font></Label>
@@ -35,7 +35,7 @@
                                         <Image url="@../assets/images/album2.jpg" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="btnAddCover" mnemonicParsing="false"  style="-fx-background-color: #1D1F3E;" text="Add a cover" textFill="#ff7a8a" onAction="#chooseCover">
+                                <Button fx:id="btnAddCover" mnemonicParsing="false" onAction="#chooseCover" style="-fx-background-color: #1D1F3E;" text="Edit Cover" textFill="#ff7a8a">
                                     <font>
                                         <Font name="Open Sans Regular" size="13.0" />
                                     </font>
@@ -64,13 +64,13 @@
                                 </TextField>
                             </children>
                         </HBox>
-                        <TextArea fx:id="playlistDescriptionArea"  prefHeight="93.0" prefWidth="542.0" promptText="A brief description about your playlist. This field is not required." />
+                        <TextArea fx:id="playlistDescriptionArea" prefHeight="93.0" prefWidth="542.0" promptText="A brief description about your playlist. This field is not required." />
                     </children>
                 </VBox>
             </children>
         </HBox>
         <HBox alignment="CENTER" prefHeight="21.0" prefWidth="542.0" style="-fx-background-color: #111536;" />
-        <Button fx:id="savePlaylistBtn" mnemonicParsing="false" style="-fx-background-color: #ff7a8a;" text="SAVE PLAYLIST" textFill="WHITE">
+        <Button fx:id="savePlaylistBtn" mnemonicParsing="false" style="-fx-background-color: #ff7a8a;" text="SAVE CHANGES" textFill="WHITE">
             <font>
                 <Font name="Open Sans Regular" size="19.0" />
             </font>
@@ -81,6 +81,4 @@
             </font>
         </Label>
     </VBox>
-    <AnchorPane layoutX="299.0" layoutY="117.0" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="0.0" />
-
 </AnchorPane>

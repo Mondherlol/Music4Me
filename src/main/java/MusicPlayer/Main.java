@@ -44,7 +44,7 @@ public class Main extends Application {
         layoutController.loadView("Home-view.fxml");
 
         // Créer une scène
-        Scene scene = new Scene(root, 850, 650);
+        Scene scene = new Scene(root, 850, 670);
 
         // Définir le titre de la fenêtre
         primaryStage.setTitle("Music Player");
@@ -67,5 +67,9 @@ public class Main extends Application {
 
     public void loadView(String fxmlFileName) {
         layoutController.loadView(fxmlFileName);
+    }
+
+    public void loadView(String fxmlFileName, int id) {
+        layoutController.loadView(fxmlFileName, id);
     }
 }
